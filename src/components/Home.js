@@ -1,8 +1,10 @@
 import React from 'react';
 
-const Index = ({ app }) => (
+
+
+const Index = ({ app, dashboard }) => (
     <div>
-        Y're at Home page, {app.name}!
+        {app.name}, here you can see the diseases witch kills more in the last years!
     </div>
 );
 
