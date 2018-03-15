@@ -1,0 +1,12 @@
+.DashboardArea {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .DashboardItem {
+        position: relative;
+        margin: auto;
+        width: 40%;
+        
+    }
+}
