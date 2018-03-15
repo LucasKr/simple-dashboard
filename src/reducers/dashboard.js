@@ -2,7 +2,7 @@ const INITIAL_STATE = {
     diseases: [
         { 
             name: "Cancer",
-            data: [ { year: 2000, people: 15040 }, { year: 2001, people: 17569 }, { year: 2002, people: 19568 }, { year: 2003, people: 15040 }, { year: 2005, people: 28950 } ]
+            data: [ { year: 2000, people: 15040 }, { year: 2001, people: 17569 }, { year: 2002, people: 19568 }, { year: 2003, people: 15040 },{ year: 2004, people: 15040 }, { year: 2005, people: 28950 } ]
         },
         { 
             name: "Diabetes", 

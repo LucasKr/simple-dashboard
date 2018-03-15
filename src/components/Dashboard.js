@@ -7,27 +7,22 @@ import '../styles/dashboard-area.css';
 
 const dashboardOptions = {
     responsive: true,
-    scaleShowGridLines: true,
-    scaleGridLineColor: 'rgba(0,0,0,0.05)',
-    scaleGridLineWidth: 1,
-    scaleShowHorizontalLines: true,
-    scaleShowVerticalLines: true,
-    bezierCurve: true,
-    bezierCurveTension: 0.4,
-    pointDot: true,
-    pointDotRadius: 4,
-    pointDotStrokeWidth: 1,
-    pointHitDetectionRadius: 20,
-    datasetStroke: true,
-    datasetStrokeWidth: 2,
-    datasetFill: true,
-    legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+    //this doesnt work!
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
+}
+
+const getRgbIdealColor = (index) => {
+    const RED = "255";
+    const GREEN = "64";
+    const BLUE = "64";
+    return `rgba(${RED}, ${GREEN}, ${BLUE}, 0.5)`;
 }
 
 const mapPropToDashboardData = (labels, diseases) => {
     return {
         labels: labels,
         datasets : diseases.map((element, index) => {
+            console.log(index);
             let result = new Array(labels.length);
             element.data.forEach(i => {
                 let indexOfLabel = labels.indexOf(i.year);
@@ -38,26 +33,52 @@ const mapPropToDashboardData = (labels, diseases) => {
             return { 
                 label: element.name,
                 data: result,
-                fillColor: "rgba(255, 64, "+index+",0.5)",
-                strokeColor: "rgba(255, 64,"+index+",0.5)",
-                pointColor: "rgba(255, 64,"+index+",0.5)",
-                pointStrokeColor: "rgba(255, 64,0,0.5)",
-                pointHighlightFill: "rgba(255, 64,"+index+",0.5)",
-                pointHighlightStroke: "rgba(255, 64, "+index+",0.5)",
+                fillColor: getRgbIdealColor(index),
+                strokeColor: getRgbIdealColor(index),
+                pointColor: getRgbIdealColor(index),
+                pointStrokeColor: getRgbIdealColor(index),
+                pointHighlightFill: getRgbIdealColor(index),
+                pointHighlightStroke: getRgbIdealColor(index)
             };
         })
     };
 }
 
-const RenderDashboardLine = ({labels, diseases}) => {
+const RenderChartLegend = ( {data} ) => {
     return (
-        <Line data={mapPropToDashboardData(labels, diseases)} options={dashboardOptions} />
+        <div className="DashboardLegends">
+            { 
+                data.datasets.map( (ds, i) => {
+                    return (
+                        <div className="DashboardLegend-item" key={i} >
+                            <div className="DashboardLegend-color" style={{ backgroundColor: ds.fillColor }}> </div>
+                            <div className="DashboardLegend-text"> {ds.label} </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    );
+}
+
+
+const RenderDashboardLine = ({labels, diseases}) => {
+    const data = mapPropToDashboardData(labels, diseases);
+    return (
+        <div>
+            <Line data={data} options={dashboardOptions} />
+            <RenderChartLegend data={data} />
+        </div>
     );
 }
 
 const RenderDashboardBar = ({labels, diseases}) => {
+    const data = mapPropToDashboardData(labels, diseases);
     return (
-        <Bar data={mapPropToDashboardData(labels, diseases)} options={dashboardOptions} />
+        <div>
+            <Bar data={data} options={dashboardOptions} />
+            <RenderChartLegend data={data} />
+        </div>
     );
 }
 
