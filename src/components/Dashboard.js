@@ -11,12 +11,7 @@ const dashboardOptions = {
     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
 }
 
-const getRgbIdealColor = (index) => {
-    const RED = "255";
-    const GREEN = "64";
-    const BLUE = "64";
-    return `rgba(${RED}, ${GREEN}, ${BLUE}, 0.5)`;
-}
+const getRgbIdealColor = ["rgba(255, 64, 64, 0.5)","rgba(255, 200, 100, 0.5)","rgba(102, 153, 0, 0.5)","rgba(51, 153, 255, 0.5)","rgba(255, 64, 64, 0.5)"];
 
 const mapPropToDashboardData = (labels, diseases) => {
     return {
@@ -30,15 +25,16 @@ const mapPropToDashboardData = (labels, diseases) => {
                     result[indexOfLabel] = i.people;
                 }
             });
+            console.log(getRgbIdealColor[index]);
             return { 
                 label: element.name,
                 data: result,
-                fillColor: getRgbIdealColor(index),
-                strokeColor: getRgbIdealColor(index),
-                pointColor: getRgbIdealColor(index),
-                pointStrokeColor: getRgbIdealColor(index),
-                pointHighlightFill: getRgbIdealColor(index),
-                pointHighlightStroke: getRgbIdealColor(index)
+                fillColor: getRgbIdealColor[index],
+                strokeColor: getRgbIdealColor[index],
+                pointColor: getRgbIdealColor[index],
+                pointStrokeColor: getRgbIdealColor[index],
+                pointHighlightFill: getRgbIdealColor[index],
+                pointHighlightStroke: getRgbIdealColor[index],
             };
         })
     };
