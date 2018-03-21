@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import Dashboard from './dashboard'; 
-import App from './app';
+import { reducer as Dashboard } from './dashboard'; 
+import { reducer as App } from './app';
 
 const rootReducer = combineReducers({
     app: App,

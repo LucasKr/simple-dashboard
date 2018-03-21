@@ -1,0 +1,114 @@
+.DashboardArea {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .DashboardItem {
+        position: relative;
+        margin: auto;
+        width: 40%;
+        
+    }
+}
+
+
+.DashboardLegends {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .DashboardLegend-item {
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        margin-right: 5px;
+        align-content: center;
+    }
+    
+    .DashboardLegend-text {
+        margin-left: 5px;
+    }
+
+    .DashboardLegend-color {
+        height: 25px;
+        width: 25px;
+    }
+}
+
+
+.DashboardinputData {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    .DashboardInput-menu {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        transition: width 2s, height 4s;
+    
+        .DiseaseCard {
+            width: 15%;
+            padding: 40px;
+            cursor: pointer;
+            border-radius: 3px;
+            color: #000;
+        }    
+    }
+
+    .DashboardInput-form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        border-radius: 2px;
+        padding: 50px;
+
+        .DashboardInput-formtitle {
+            text-align: center;   
+            padding: 10px;
+        }
+
+        .DashboardInput-formcontent {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+
+
+            .DashboardInput-formYearBox {
+                display: flex;
+                flex-direction: column;
+                width: 200px;
+                padding: 30px;
+                border: 1px solid #eee;
+                border-radius: 15px;
+                box-shadow: 0px 1px 2px 0px #eee;
+                
+                .DashboardInput-header {
+                    display: flex;
+                    flex-direction: row;
+
+                    label {
+                        flex-grow: 8;
+                        order: 0;
+                    }
+
+                    button {
+                        flex-grow: 1;
+                        order: 1;
+                    }
+
+                }
+
+                input {
+                    text-align: center;
+                    border: none;
+                    box-shadow: -1px 2px 3px 0px #eee;
+                }
+            }
+            
+        }
+    }
+}
